@@ -1,6 +1,4 @@
-@use 'src/styles/utilities' as u;
-
-/* niente @extend .wrap/.panel/.neon */
+@use '../../../styles/utilities' as u; 
 
 h2{
   font-size:40px; margin:64px auto 24px; max-width:1080px; padding:0 20px;
