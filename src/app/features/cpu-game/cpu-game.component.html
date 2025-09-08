@@ -1,0 +1,30 @@
+<section class="wrap" *ngIf="state; else loading">
+  <h1>{{ playerName }} vs CPU</h1>
+  <p class="sub">Difficoltà: <strong>{{ level }}</strong></p>
+
+  <div class="board">
+    <!-- forca + omino -->
+    <svg viewBox="0 0 140 160" class="gallows">
+      <line x1="10" y1="150" x2="130" y2="150"/>
+      <line x1="30" y1="150" x2="30" y2="10"/>
+      <line x1="30" y1="10" x2="90" y2="10"/>
+      <line x1="90" y1="10" x2="90" y2="30"/>
+      <circle *ngIf="state.lives<=5" cx="90" cy="40" r="10"/>
+      <line *ngIf="state.lives<=4" x1="90" y1="50" x2="90" y2="90"/>
+      <line *ngIf="state.lives<=3" x1="90" y1="60" x2="75" y2="75"/>
+      <line *ngIf="state.lives<=2" x1="90" y1="60" x2="105" y2="75"/>
+      <line *ngIf="state.lives<=1" x1="90" y1="90" x2="78" y2="115"/>
+      <line *ngIf="state.lives<=0" x1="90" y1="90" x2="102" y2="115"/>
+    </svg>
+
+    <div class="word">
+      <span *ngFor="let ch of state.masked.split('')">{{ ch }}</span>
+    </div>
+
+    <div class="lives">Vite: {{ state.lives }}</div>
+  </div>
+</section>
+
+<ng-template #loading>
+  <section class="wrap"><p>Caricamento…</p></section>
+</ng-template>

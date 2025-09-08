@@ -1,5 +1,11 @@
 <section class="wrap">
   <h2>Scegli difficoltà</h2>
+
+  <div class="player">
+    <label for="name">Il tuo nome:</label>
+    <input id="name" [(ngModel)]="playerName" placeholder="Inserisci nome" />
+  </div>
+
   <div class="grid">
     <button class="card easy"    (click)="select('easy')"><span>🙂</span><strong>Facile</strong><small>tollerante</small></button>
     <button class="card medium"  (click)="select('medium')"><span>😐</span><strong>Medio</strong><small>bilanciata</small></button>

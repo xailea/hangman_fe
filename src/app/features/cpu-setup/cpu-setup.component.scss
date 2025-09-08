@@ -46,3 +46,42 @@ h2{
 .card.extreme::after{ background: radial-gradient(60% 110% at 50% 120%, rgba(255,41,255,.4), transparent 60%); }
 
 .card:focus-visible{ outline:2px solid var(--neon-cyan); outline-offset:3px; }
+
+.player {
+  margin: 0 auto 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+
+  label {
+    font-size: 18px;
+    color: var(--neon-cyan);
+    text-shadow: 0 0 12px rgba(0,234,255,.35);
+  }
+
+  input {
+    background: linear-gradient(180deg, #0f1326, #0b1020);
+    border: 1px solid color-mix(in srgb, var(--neon-cyan) 50%, transparent);
+    color: var(--text);
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    width: 260px;
+    text-align: center;
+
+    @include u.neon; // stesso mixin neon che usi sulle card
+
+    transition: all .25s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 18px rgba(0,234,255,.45), inset 0 0 8px rgba(0,234,255,.2);
+    }
+
+    &::placeholder {
+      color: rgba(255,255,255,.45);
+    }
+  }
+}

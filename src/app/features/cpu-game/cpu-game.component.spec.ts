@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocalComponent } from './local.component';
+import { CpuGameComponent } from './cpu-game.component';
 
-describe('LocalComponent', () => {
-  let component: LocalComponent;
-  let fixture: ComponentFixture<LocalComponent>;
+describe('CpuGameComponent', () => {
+  let component: CpuGameComponent;
+  let fixture: ComponentFixture<CpuGameComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LocalComponent]
+      imports: [CpuGameComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LocalComponent);
+    fixture = TestBed.createComponent(CpuGameComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
