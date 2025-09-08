@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+  --bg-0:#07080f; --bg-1:#0b0f1d; --card:#101427; --text:#e9ecff; --muted:#97a0c4;
+  --neon-cyan:#00eaff; --neon-yellow:#ffe600; --neon-orange:#ff7a3d; --neon-magenta:#ff29ff; --neon-green:#36ff8f;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at 15% 0%, rgba(0,234,255,.08), transparent 60%),
+    radial-gradient(900px 500px at 85% 10%, rgba(255,41,255,.08), transparent 60%),
+    linear-gradient(180deg, var(--bg-0), var(--bg-1) 60%, #0a0d19);
+  font-family: system-ui, Inter, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* utilità condivise */
+.wrap{max-width: 1080px; margin:64px auto; padding:0 20px}
+.panel{
+  background: var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,.45);
+}
+.h1, h1, h2{letter-spacing:.2px}
+small{color:var(--muted)}
+.neon{position:relative; isolation:isolate}
+.neon::after{
+  content:"";
+  position:absolute; inset:-1px;
+  border-radius:inherit;
+  filter: blur(14px); opacity:.55; z-index:-1;
+  background: transparent;
+}

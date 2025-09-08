@@ -1,13 +1,52 @@
-.wrap { max-width: 920px; margin: 64px auto; padding: 0 16px; color: #d6d7e0; }
-h2 { font-size: 36px; margin: 0 0 16px; color: #8ea2ff; }
-.grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
-.card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
-  padding:28px 16px; border-radius:16px; border:1px solid rgba(255,255,255,.06);
-  background:#121723; cursor:pointer; }
-.card:hover { transform: translateY(-2px); }
-.card span { font-size:28px; }
-.card.easy { box-shadow: inset 0 0 0 1px rgba(80,200,120,.2); }
-.card.medium { box-shadow: inset 0 0 0 1px rgba(255,215,0,.18); }
-.card.hard { box-shadow: inset 0 0 0 1px rgba(255,140,0,.18); }
-.card.extreme { box-shadow: inset 0 0 0 1px rgba(255,69,58,.22); }
-small { opacity:.65; }
+.wrap{ @extend .wrap; }
+
+h2{
+  font-size:40px; margin:0 0 24px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 18px rgba(0,234,255,.35);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0,1fr));
+  gap:22px;
+}
+
+.card{
+  @extend .panel;
+  @extend .neon;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:10px; padding:32px 20px; cursor:pointer; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  background: linear-gradient(180deg, #0f1326, #0b1020);
+  color: var(--text);
+  border-color: rgba(255,255,255,.08);
+  strong{font-weight:700}
+  span{font-size:30px}
+  small{opacity:.8}
+  &:hover{ transform: translateY(-3px) scale(1.01); }
+}
+
+.card.easy{
+  border-color: color-mix(in srgb, var(--neon-green) 40%, transparent);
+}
+.card.easy::after{ background: radial-gradient(60% 110% at 50% 120%, rgba(54,255,143,.35), transparent 60%); }
+
+.card.medium{
+  border-color: color-mix(in srgb, var(--neon-yellow) 40%, transparent);
+}
+.card.medium::after{ background: radial-gradient(60% 110% at 50% 120%, rgba(255,230,0,.35), transparent 60%); }
+
+.card.hard{
+  border-color: color-mix(in srgb, var(--neon-orange) 45%, transparent);
+}
+.card.hard::after{ background: radial-gradient(60% 110% at 50% 120%, rgba(255,122,61,.35), transparent 60%); }
+
+.card.extreme{
+  border-color: color-mix(in srgb, var(--neon-magenta) 50%, transparent);
+}
+.card.extreme::after{ background: radial-gradient(60% 110% at 50% 120%, rgba(255,41,255,.4), transparent 60%); }
+
+.card:focus-visible{
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 3px;
+}
