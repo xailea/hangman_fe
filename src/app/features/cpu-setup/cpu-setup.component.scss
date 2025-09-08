@@ -1,25 +1,26 @@
-.wrap{ @extend .wrap; }
+@use 'src/styles/utilities' as u;
+
+/* niente @extend .wrap/.panel/.neon */
 
 h2{
-  font-size:40px; margin:0 0 24px;
+  font-size:40px; margin:64px auto 24px; max-width:1080px; padding:0 20px;
   color: var(--neon-cyan);
   text-shadow: 0 0 18px rgba(0,234,255,.35);
 }
 
 .grid{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap:22px;
+  max-width:1080px; margin:0 auto; padding:0 20px 80px;
+  display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:22px;
 }
 
 .card{
-  @extend .panel;
-  @extend .neon;
+  @include u.panel;
+  @include u.neon;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:10px; padding:32px 20px; cursor:pointer; transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+  gap:10px; padding:32px 20px; cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
   background: linear-gradient(180deg, #0f1326, #0b1020);
-  color: var(--text);
-  border-color: rgba(255,255,255,.08);
+  color: var(--text); border-color: rgba(255,255,255,.08);
   strong{font-weight:700}
   span{font-size:30px}
   small{opacity:.8}
@@ -46,7 +47,4 @@ h2{
 }
 .card.extreme::after{ background: radial-gradient(60% 110% at 50% 120%, rgba(255,41,255,.4), transparent 60%); }
 
-.card:focus-visible{
-  outline: 2px solid var(--neon-cyan);
-  outline-offset: 3px;
-}
+.card:focus-visible{ outline:2px solid var(--neon-cyan); outline-offset:3px; }
