@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [RouterModule, NgIf],
+  imports: [RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
