@@ -1,0 +1,13 @@
+.wrap { max-width: 920px; margin: 64px auto; padding: 0 16px; color: #d6d7e0; }
+h2 { font-size: 36px; margin: 0 0 16px; color: #8ea2ff; }
+.grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+  padding:28px 16px; border-radius:16px; border:1px solid rgba(255,255,255,.06);
+  background:#121723; cursor:pointer; }
+.card:hover { transform: translateY(-2px); }
+.card span { font-size:28px; }
+.card.easy { box-shadow: inset 0 0 0 1px rgba(80,200,120,.2); }
+.card.medium { box-shadow: inset 0 0 0 1px rgba(255,215,0,.18); }
+.card.hard { box-shadow: inset 0 0 0 1px rgba(255,140,0,.18); }
+.card.extreme { box-shadow: inset 0 0 0 1px rgba(255,69,58,.22); }
+small { opacity:.65; }

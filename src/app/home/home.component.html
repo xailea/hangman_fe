@@ -1,0 +1,21 @@
+<section class="wrap">
+  <h1>Start Game</h1>
+  <p class="sub">Scegli la modalità</p>
+
+  <div class="panel">
+    <button class="mode" (click)="goCpu()">
+      <span class="icon">🎮</span>
+      <div><strong>CPU</strong><small>Gioca in solo</small></div>
+    </button>
+
+    <button class="mode" (click)="goLocal()">
+      <span class="icon">🤝</span>
+      <div><strong>Locale</strong><small>2 giocatori</small></div>
+    </button>
+
+    <button class="mode" (click)="goOnline()">
+      <span class="icon">🌐</span>
+      <div><strong>Online</strong><small>Lobby e matchmaking</small></div>
+    </button>
+  </div>
+</section>

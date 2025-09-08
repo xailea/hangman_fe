@@ -1,0 +1,8 @@
+.wrap { max-width: 920px; margin: 64px auto; padding: 0 16px; color: #d6d7e0; }
+h1 { font-size: 48px; color: #8ea2ff; margin: 0 0 8px; }
+.sub { opacity: .7; margin: 0 0 24px; }
+.panel { background: #0f141b; border: 1px solid rgba(255,255,255,.06); border-radius: 20px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.mode { width: 100%; display: flex; align-items: center; gap: 16px; padding: 20px; margin: 12px 0; border-radius: 16px; border: 1px solid rgba(255,255,255,.06); background: linear-gradient(180deg,#182334,#141a24); color: inherit; cursor: pointer; }
+.mode:hover { transform: translateY(-1px); }
+.icon { font-size: 28px; }
+small { display: block; opacity: .65; font-size: 12px; }

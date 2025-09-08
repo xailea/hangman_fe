@@ -1,0 +1,17 @@
+<section class="wrap">
+  <h2>Scegli difficoltà</h2>
+  <div class="grid">
+    <button class="card easy"    (click)="select('easy')">
+      <span>🙂</span><strong>{{ label.easy }}</strong><small>tollerante</small>
+    </button>
+    <button class="card medium"  (click)="select('medium')">
+      <span>😐</span><strong>{{ label.medium }}</strong><small>bilanciata</small>
+    </button>
+    <button class="card hard"    (click)="select('hard')">
+      <span>😬</span><strong>{{ label.hard }}</strong><small>poche chances</small>
+    </button>
+    <button class="card extreme" (click)="select('extreme')">
+      <span>🔥</span><strong>{{ label.extreme }}</strong><small>spietata</small>
+    </button>
+  </div>
+</section>
