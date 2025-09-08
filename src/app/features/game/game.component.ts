@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Difficulty } from '../../models/difficulty';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 @Component({
   standalone: true,
   selector: 'app-game',
-  imports: [AsyncPipe, NgIf],
+  imports: [NgIf],
   template: `
     <section class="wrap">
       <h2>Hangman vs CPU</h2>
