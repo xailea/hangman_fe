@@ -20,6 +20,6 @@ export class CpuSetupComponent {
 
   select(level: Difficulty) {
     if (!this.playerName.trim()) return;
-    this.router.navigate(['/startgame'], { queryParams: { level, name: this.playerName } });
+    this.router.navigate(['game/cpu'], { queryParams: { level, name: this.playerName } });
   }
 }
