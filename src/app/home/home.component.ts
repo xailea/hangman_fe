@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [RouterModule, NgIf, FormsModule],
+  imports: [FormsModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

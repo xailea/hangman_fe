@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 export interface StartResp {
   level: string; seed: string; len: number;
@@ -11,7 +12,7 @@ export interface GuessResp {
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
-  private base = '/api/game';
+  private base = (environment.apiBase ? `${environment.apiBase}` : '') + '/api/game';
   constructor(private http: HttpClient) {}
 
   start(level: 'easy'|'medium'|'hard'|'extreme', seed?: string){
