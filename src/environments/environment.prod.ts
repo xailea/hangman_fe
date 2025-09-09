@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBase: 'https://hangman-be.onrender.com'
+  apiBase: 'https://hangmanfe.netlify.app/'
 };
