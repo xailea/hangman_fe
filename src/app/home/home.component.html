@@ -2,20 +2,36 @@
   <h1>Start Game</h1>
   <p class="sub">Scegli la modalità</p>
 
+  <!-- Nome giocatore -->
+  <div class="name-box">
+    <label for="playerName">Il tuo nome:</label>
+    <input id="playerName" type="text" [(ngModel)]="name" placeholder="Inserisci nome" />
+  </div>
+
+  <!-- Pannello opzioni -->
   <div class="panel">
-    <button class="mode" (click)="goCpu()">
-      <span class="icon">🎮</span>
-      <div><strong>CPU</strong><small>Gioca in solo</small></div>
+    <button class="item" (click)="goCpu()">
+      <div class="icon">🎮</div>
+      <div class="txt">
+        <div class="title">CPU</div>
+        <div class="sub">Gioca in solo</div>
+      </div>
     </button>
 
-    <button class="mode" (click)="goLocal()">
-      <span class="icon">🤝</span>
-      <div><strong>Locale</strong><small>2 giocatori</small></div>
+    <button class="item" (click)="goLocal()">
+      <div class="icon">🤝</div>
+      <div class="txt">
+        <div class="title">Locale</div>
+        <div class="sub">2 giocatori</div>
+      </div>
     </button>
 
-    <button class="mode" (click)="goOnline()">
-      <span class="icon">🌐</span>
-      <div><strong>Online</strong><small>Lobby e matchmaking</small></div>
+    <button class="item" (click)="goOnline()">
+      <div class="icon">🌐</div>
+      <div class="txt">
+        <div class="title">Online</div>
+        <div class="sub">Lobby e matchmaking</div>
+      </div>
     </button>
   </div>
 </section>

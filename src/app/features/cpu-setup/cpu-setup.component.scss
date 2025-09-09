@@ -1,4 +1,4 @@
-@use '../../../styles/utilities' as u; 
+@use '../../../styles/utilities' as u;
 
 h2{
   font-size:40px; margin:64px auto 24px; max-width:1080px; padding:0 20px;
@@ -85,3 +85,11 @@ h2{
     }
   }
 }
+
+.name-hint{
+  margin: 8px 0 16px;
+  color:#9db6ff;
+  font-size:14px;
+  text-shadow: 0 0 8px rgba(0,150,255,.25);
+}
+

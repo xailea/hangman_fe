@@ -1,17 +1,30 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [RouterModule],
+  imports: [RouterModule, NgIf, FormsModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrls: ['./home.component.scss']
 })
-
 export class HomeComponent {
+  name = '';
+
   constructor(private router: Router) {}
-  goCpu()    { this.router.navigate(['/cpu']); }
-  goLocal()  { this.router.navigate(['/local']); }
-  goOnline() { this.router.navigate(['/online']); }
+
+  goCpu() {
+    const n = (this.name || 'Player').trim();
+    this.router.navigate(['/cpu'], { queryParams: { name: n } });
+  }
+  goLocal() {
+    const n = (this.name || 'Player').trim();
+    this.router.navigate(['/local'], { queryParams: { name: n } });
+  }
+  goOnline() {
+    const n = (this.name || 'Player').trim();
+    this.router.navigate(['/online'], { queryParams: { name: n } });
+  }
 }

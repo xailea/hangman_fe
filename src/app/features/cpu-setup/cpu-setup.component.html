@@ -1,15 +1,21 @@
 <section class="wrap">
-  <h2>Scegli difficoltà</h2>
+  <h1>Scegli difficoltà</h1>
 
-  <div class="player">
-    <label for="name">Il tuo nome:</label>
-    <input id="name" [(ngModel)]="playerName" placeholder="Inserisci nome" />
-  </div>
+  <!-- Testo al posto dell'input -->
+  <div class="name-hint">Sfida chi vuoi {{ playerName }}</div>
 
   <div class="grid">
-    <button class="card easy"    (click)="select('easy')"><span>🙂</span><strong>Facile</strong><small>tollerante</small></button>
-    <button class="card medium"  (click)="select('medium')"><span>😐</span><strong>Medio</strong><small>bilanciata</small></button>
-    <button class="card hard"    (click)="select('hard')"><span>😬</span><strong>Difficile</strong><small>poche chances</small></button>
-    <button class="card extreme" (click)="select('extreme')"><span>🔥</span><strong>Estremo</strong><small>spietata</small></button>
+    <button class="card easy"    (click)="select('easy')">
+      <div class="emoji">🙂</div><div class="t1">Facile</div><div class="t2">tollerante</div>
+    </button>
+    <button class="card medium"  (click)="select('medium')">
+      <div class="emoji">😐</div><div class="t1">Medio</div><div class="t2">bilanciata</div>
+    </button>
+    <button class="card hard"    (click)="select('hard')">
+      <div class="emoji">😬</div><div class="t1">Difficile</div><div class="t2">poche chances</div>
+    </button>
+    <button class="card extreme" (click)="select('extreme')">
+      <div class="emoji">🔥</div><div class="t1">Estremo</div><div class="t2">spietata</div>
+    </button>
   </div>
 </section>

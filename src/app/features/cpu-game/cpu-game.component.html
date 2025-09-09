@@ -1,27 +1,68 @@
-<section class="wrap" *ngIf="state; else loading">
+<section class="wrap game" *ngIf="state as s; else loading">
+  <div class="actions top">
+    <button class="btn back" (click)="back()">← Indietro</button>
+    <button class="btn change" (click)="changeWord()">Cambia parola</button>
+  </div>
+
   <h1>{{ playerName }} vs CPU</h1>
   <p class="sub">Difficoltà: <strong>{{ level }}</strong></p>
 
-  <div class="board">
-    <!-- forca + omino -->
-    <svg viewBox="0 0 140 160" class="gallows">
-      <line x1="10" y1="150" x2="130" y2="150"/>
-      <line x1="30" y1="150" x2="30" y2="10"/>
-      <line x1="30" y1="10" x2="90" y2="10"/>
-      <line x1="90" y1="10" x2="90" y2="30"/>
-      <circle *ngIf="state.lives<=5" cx="90" cy="40" r="10"/>
-      <line *ngIf="state.lives<=4" x1="90" y1="50" x2="90" y2="90"/>
-      <line *ngIf="state.lives<=3" x1="90" y1="60" x2="75" y2="75"/>
-      <line *ngIf="state.lives<=2" x1="90" y1="60" x2="105" y2="75"/>
-      <line *ngIf="state.lives<=1" x1="90" y1="90" x2="78" y2="115"/>
-      <line *ngIf="state.lives<=0" x1="90" y1="90" x2="102" y2="115"/>
-    </svg>
+  <div class="grid">
+    <!-- SINISTRA -->
+    <div class="left">
+      <svg class="hang" viewBox="0 0 160 180" aria-label="impiccato">
+        <g class="gallows">
+          <line x1="20" y1="170" x2="150" y2="170"/>
+          <line x1="40" y1="170" x2="40" y2="20"/>
+          <line x1="40" y1="20" x2="110" y2="20"/>
+          <line x1="110" y1="20" x2="110" y2="40"/>
+        </g>
+        <g class="man">
+          <circle *ngIf="parts>=1" class="head"  cx="110" cy="55" r="12"/>
+          <line   *ngIf="parts>=2" class="body"  x1="110" y1="67" x2="110" y2="110"/>
+          <line   *ngIf="parts>=3" class="arm"   x1="110" y1="78" x2="92"  y2="95"/>
+          <line   *ngIf="parts>=4" class="arm"   x1="110" y1="78" x2="128" y2="95"/>
+          <line   *ngIf="parts>=5" class="leg"   x1="110" y1="110" x2="96"  y2="136"/>
+          <line   *ngIf="parts>=6" class="leg"   x1="110" y1="110" x2="124" y2="136"/>
+        </g>
+      </svg>
 
-    <div class="word">
-      <span *ngFor="let ch of state.masked.split('')">{{ ch }}</span>
+      <div class="word">
+        <span *ngFor="let ch of s.masked.split(''); let i = index" [class.found]="ch !== '_'">{{ ch }}</span>
+      </div>
+
+      <form class="guess" (ngSubmit)="submit()" autocomplete="off" novalidate>
+        <input class="letter" type="text" maxlength="1"
+               [value]="current" (input)="onInput($event)" (keydown)="filter($event)"
+               placeholder="A" aria-label="Inserisci una lettera"/>
+        <button type="submit" [disabled]="!current || guessed.has(current)">Prova</button>
+      </form>
+
+      <div class="lives">
+        <span class="dot" *ngFor="let _ of dots; let k = index" [class.off]="k >= lives"></span>
+        <span class="label">Vite: {{ lives }}</span>
+      </div>
     </div>
 
-    <div class="lives">Vite: {{ state.lives }}</div>
+    <!-- DESTRA -->
+    <aside class="wrong">
+      <h3>Errate</h3>
+      <div class="chips">
+        <span class="chip" *ngFor="let ch of wrongLetters">{{ ch }}</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- FINE PARTITA -->
+  <div class="overlay" *ngIf="gameOver">
+    <div class="modal">
+      <h3 *ngIf="gameOver==='win'">Hai vinto</h3>
+      <h3 *ngIf="gameOver==='lose'">Hai perso</h3>
+      <div class="actions center">
+        <button class="btn change" (click)="restart()">Nuova parola</button>
+        <button class="btn back" (click)="back()">Indietro</button>
+      </div>
+    </div>
   </div>
 </section>
 

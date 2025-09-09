@@ -1,8 +1,40 @@
-.wrap { max-width: 920px; margin: 64px auto; padding: 0 16px; color: #d6d7e0; }
-h1 { font-size: 48px; color: #8ea2ff; margin: 0 0 8px; }
-.sub { opacity: .7; margin: 0 0 24px; }
-.panel { background: #0f141b; border: 1px solid rgba(255,255,255,.06); border-radius: 20px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.35); }
-.mode { width: 100%; display: flex; align-items: center; gap: 16px; padding: 20px; margin: 12px 0; border-radius: 16px; border: 1px solid rgba(255,255,255,.06); background: linear-gradient(180deg,#182334,#141a24); color: inherit; cursor: pointer; }
-.mode:hover { transform: translateY(-1px); }
-.icon { font-size: 28px; }
-small { display: block; opacity: .65; font-size: 12px; }
+.wrap{ max-width: 900px; margin: 36px auto; }
+
+.name-box{
+  display:flex; flex-direction:column; align-items:center; gap:8px; margin:10px 0 18px;
+  label{ color:#a9b7ff; font-size:14px; }
+  input{
+    width: 340px; max-width: 100%; padding:10px 14px; text-align:center;
+    color:#eaf0ff; background:#0f1528; border-radius:14px; outline:none;
+    border:1px solid rgba(0,234,255,.35);
+    box-shadow: 0 0 18px rgba(0,234,255,.18) inset, 0 0 14px rgba(0,234,255,.15);
+    &::placeholder{ color:#7f8bb8; }
+  }
+}
+
+.panel{
+  padding:22px; border-radius:22px; background: #0c1223;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,.45), inset 0 0 40px rgba(255,255,255,.02);
+  display:flex; flex-direction:column; gap:16px;
+}
+
+.item{
+  width:100%; display:flex; align-items:center; gap:14px; padding:18px 20px;
+  background: linear-gradient(180deg, #141b2e 0%, #0f1628 100%);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:16px; cursor:pointer; text-align:left;
+  transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35), inset 0 0 24px rgba(255,255,255,.02);
+
+  .icon{ font-size:28px; filter: drop-shadow(0 0 8px rgba(0,234,255,.25)); }
+  .txt{ display:flex; flex-direction:column; }
+  .title{ color:#e9ecff; font-weight:600; }
+  .sub{ color:#93a0c4; font-size:12px; }
+
+  &:hover{
+    transform: translateY(-2px);
+    border-color: rgba(0,234,255,.35);
+    box-shadow: 0 10px 24px rgba(0,0,0,.4), 0 0 18px rgba(0,234,255,.15) inset;
+  }
+}
