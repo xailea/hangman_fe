@@ -70,7 +70,7 @@ h2{
     width: 260px;
     text-align: center;
 
-    @include u.neon; // stesso mixin neon che usi sulle card
+    @include u.neon;
 
     transition: all .25s ease;
 
@@ -92,4 +92,21 @@ h2{
   font-size:14px;
   text-shadow: 0 0 8px rgba(0,150,255,.25);
 }
+
+.actions{ display:flex; gap:10px; }
+.actions.top{ justify-content:flex-end; margin-bottom:8px; }
+.actions.center{ justify-content:center; margin-top:12px; }
+
+.name-box{
+  display:flex; flex-direction:column; align-items:center; gap:8px; margin:10px 0 18px;
+  label{ color:#a9b7ff; font-size:14px; }
+  input{
+    width: 340px; max-width: 100%; padding:10px 14px; text-align:center;
+    color:#eaf0ff; background:#0f1528; border-radius:14px; outline:none;
+    border:1px solid rgba(0,234,255,.35);
+    box-shadow: 0 0 18px rgba(0,234,255,.18) inset, 0 0 14px rgba(0,234,255,.15);
+    &::placeholder{ color:#7f8bb8; }
+  }
+}
+
 

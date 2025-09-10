@@ -1,0 +1,146 @@
+<section class="wrap game" *ngIf="phase !== 'result'; else results">
+  <div class="actions top">
+    <button class="btn back" (click)="back()">← Indietro</button>
+    <button *ngIf="phase==='p2Guess' || phase==='p1Guess'"
+            class="btn change" type="button" (click)="restartRound()">Cambia parola</button>
+  </div>
+
+  <ng-container *ngIf="phase==='names'">
+    <h1>Locale 2 giocatori</h1>
+    <form class="names" (ngSubmit)="startP1Word()">
+      <label><span>Giocatore 1</span>
+        <input type="text" [(ngModel)]="p1.name" name="p1" placeholder="Nome"/>
+      </label>
+      <label><span>Giocatore 2</span>
+        <input type="text" [(ngModel)]="p2.name" name="p2" placeholder="Nome"/>
+      </label>
+      <div class="actions center">
+        <button class="btn change" type="submit" [disabled]="!p1.name || !p2.name">Continua</button>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="phase==='p1Word'">
+    <h1>{{ p1.name }} imposta la parola</h1>
+    <p class="sub">Copri lo schermo da {{ p2.name }}</p>
+    <form class="names" (ngSubmit)="confirmWordFromP1()">
+      <label><span>Parola segreta</span>
+        <input type="password" [(ngModel)]="p1.word" name="p1word" placeholder="******" autocomplete="off"/>
+      </label>
+      <div class="actions center">
+        <button class="btn change" type="submit" [disabled]="!p1.word">Conferma</button>
+        <button class="btn back" type="button" (click)="restartMatch()">Annulla</button>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="phase==='p2Guess'">
+    <h1>{{ p2.name }} indovina</h1>
+    <p class="sub">Parola di {{ p1.name }}</p>
+    <ng-container [ngTemplateOutlet]="guessPanel"></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="phase==='p2Word'">
+    <h1>{{ p2.name }} imposta la parola</h1>
+    <p class="sub">Copri lo schermo da {{ p1.name }}</p>
+    <form class="names" (ngSubmit)="confirmWordFromP2()">
+      <label><span>Parola segreta</span>
+        <input type="password" [(ngModel)]="p2.word" name="p2word" placeholder="******" autocomplete="off"/>
+      </label>
+      <div class="actions center">
+        <button class="btn change" type="submit" [disabled]="!p2.word">Conferma</button>
+        <button class="btn back" type="button" (click)="restartMatch()">Annulla</button>
+      </div>
+    </form>
+  </ng-container>
+
+  <ng-container *ngIf="phase==='p1Guess'">
+    <h1>{{ p1.name }} indovina</h1>
+    <p class="sub">Parola di {{ p2.name }}</p>
+    <ng-container [ngTemplateOutlet]="guessPanel"></ng-container>
+  </ng-container>
+
+  <ng-template #guessPanel>
+    <div class="grid">
+      <div class="left">
+        <svg class="hang" viewBox="0 0 160 180" aria-label="impiccato">
+          <g class="gallows">
+            <line x1="20" y1="170" x2="150" y2="170"/>
+            <line x1="40" y1="170" x2="40" y2="20"/>
+            <line x1="40" y1="20" x2="110" y2="20"/>
+            <line x1="110" y1="20" x2="110" y2="40"/>
+          </g>
+          <g class="man">
+            <circle *ngIf="parts>=1" class="head"  cx="110" cy="55" r="12"/>
+            <line   *ngIf="parts>=2" class="body"  x1="110" y1="67" x2="110" y2="110"/>
+            <line   *ngIf="parts>=3" class="arm"   x1="110" y1="78" x2="92"  y2="95"/>
+            <line   *ngIf="parts>=4" class="arm"   x1="110" y1="78" x2="128" y2="95"/>
+            <line   *ngIf="parts>=5" class="leg"   x1="110" y1="110" x2="96"  y2="136"/>
+            <line   *ngIf="parts>=6" class="leg"   x1="110" y1="110" x2="124" y2="136"/>
+          </g>
+        </svg>
+
+        <div class="word">
+          <span *ngFor="let ch of masked.split('')" [class.found]="ch !== '_'">{{ ch }}</span>
+        </div>
+
+        <form class="guess" (ngSubmit)="submit()" autocomplete="off" novalidate>
+          <input #letterInput class="letter" type="text" maxlength="1"
+                 [value]="current" (input)="onInput($event)" (keydown)="filter($event)"
+                 placeholder="A" aria-label="Inserisci una lettera" autocomplete="off"/>
+          <button type="submit" class="btn change" [disabled]="!current || guessed.has(current)">Prova</button>
+          <button class="btn change" type="button" (click)="restartRound()">Nuova parola</button>
+        </form>
+
+        <div class="lives">
+          <span class="dot" *ngFor="let _ of dots; let k = index" [class.off]="k >= lives"></span>
+          <span class="label">Vite: {{ lives }}</span>
+        </div>
+      </div>
+
+      <aside class="wrong">
+        <h3>Errate</h3>
+        <div class="chips">
+          <span class="chip" *ngFor="let ch of wrongLetters">{{ ch }}</span>
+        </div>
+
+        <div class="solution" *ngIf="gameOver==='lose'">
+          <span class="label">Parola corretta:</span>
+          <span class="value">{{ secret }}</span>
+        </div>
+      </aside>
+
+    </div>
+
+    <div class="overlay" *ngIf="gameOver">
+      <div class="modal">
+        <h3 *ngIf="gameOver==='win'">Parola indovinata</h3>
+        <h3 *ngIf="gameOver==='lose'">Impiccato</h3>
+        <p>Errori totali: {{ wrongLetters.length }}</p>
+        <div class="actions center">
+          <button *ngIf="phase==='p2Guess'" class="btn change"
+                  (click)="phase='p2Word'; resetRound(); resetEntry()">Passa turno</button>
+          <button *ngIf="phase==='p1Guess'" class="btn change"
+                  (click)="phase='result'">Vedi vincitore</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</section>
+
+<ng-template #results>
+  <section class="wrap game">
+    <h1>Risultato</h1>
+    <p class="sub">
+      {{ p1.name }} errori: <strong>{{ p1.mistakes }}</strong> |
+      {{ p2.name }} errori: <strong>{{ p2.mistakes }}</strong>
+    </p>
+    <h2 *ngIf="p1.mistakes < p2.mistakes">{{ p1.name }} ha vinto</h2>
+    <h2 *ngIf="p2.mistakes < p1.mistakes">{{ p2.name }} ha vinto</h2>
+    <h2 *ngIf="p1.mistakes === p2.mistakes">Pareggio</h2>
+    <div class="actions center">
+      <button class="btn change" (click)="restartMatch()">Nuova partita</button>
+      <button class="btn back" (click)="back()">Indietro</button>
+    </div>
+  </section>
+</ng-template>

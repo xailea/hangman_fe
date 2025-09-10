@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,7 +11,20 @@ import { GameService, StartResp, GuessResp } from '../../services/game.service';
   templateUrl: './cpu-game.component.html',
   styleUrls: ['./cpu-game.component.scss']
 })
-export class CpuGameComponent implements OnInit {
+export class CpuGameComponent implements OnInit, AfterViewInit {
+
+  @ViewChildren('letterInput') letterInputs!: QueryList<ElementRef<HTMLInputElement>>;
+
+  ngAfterViewInit() {
+    
+    this.letterInputs.changes.subscribe(() => this.focusLetter());
+    this.focusLetter();
+  }
+  private focusLetter() {
+    const el = this.letterInputs?.last?.nativeElement;
+    if (el) setTimeout(() => el.focus(), 0);
+  }
+
   playerName = 'Player';
   level: 'easy'|'medium'|'hard'|'extreme' = 'easy';
   state: StartResp | null = null;
@@ -29,7 +42,7 @@ export class CpuGameComponent implements OnInit {
     this.route.queryParams.subscribe(p => {
       this.level = (p['level'] ?? 'easy') as any;
       this.playerName = (p['name'] ?? 'Player').toString();
-      this.start();                         // seed random lato BE
+      this.start();
     });
   }
 
@@ -46,7 +59,7 @@ export class CpuGameComponent implements OnInit {
   }
 
   back(){ this.router.navigate(['/cpu']); }
-  changeWord(){ this.start(Date.now().toString()); }   // ← forza seed diverso
+  changeWord(){ this.start(Date.now().toString()); }
   restart(){ this.changeWord(); }
 
   get dots(): number[] { return Array.from({ length: this.maxLives }); }
