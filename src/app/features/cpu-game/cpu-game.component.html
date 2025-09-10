@@ -32,9 +32,9 @@
       </div>
 
       <form class="guess" (ngSubmit)="submit()" autocomplete="off" novalidate>
-        <input class="letter" type="text" maxlength="1"
+        <input #letterInput class="letter" type="text" maxlength="1"
                [value]="current" (input)="onInput($event)" (keydown)="filter($event)"
-               placeholder="A" aria-label="Inserisci una lettera"/>
+               placeholder="A" aria-label="Inserisci una lettera" autocomplete="off"/>
         <button type="submit" [disabled]="!current || guessed.has(current)">Prova</button>
       </form>
 

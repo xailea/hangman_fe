@@ -10,20 +10,16 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-  name = '';
 
   constructor(private router: Router) {}
 
   goCpu() {
-    const n = (this.name || 'Player').trim();
-    this.router.navigate(['/cpu'], { queryParams: { name: n } });
+    this.router.navigate(['/cpu']);
   }
   goLocal() {
-    const n = (this.name || 'Player').trim();
-    this.router.navigate(['/local'], { queryParams: { name: n } });
+    this.router.navigate(['/local']);
   }
   goOnline() {
-    const n = (this.name || 'Player').trim();
-    this.router.navigate(['/online'], { queryParams: { name: n } });
+    this.router.navigate(['/online']);
   }
 }
