@@ -16,9 +16,8 @@ export class LocaleComponent implements AfterViewInit {
   @ViewChildren('letterInput') letterInputs!: QueryList<ElementRef<HTMLInputElement>>;
 
   ngAfterViewInit() {
-    // focus ogni volta che l’input appare (cambio fase / render del template)
     this.letterInputs.changes.subscribe(() => this.focusLetter());
-    this.focusLetter(); // primo render
+    this.focusLetter();
   }
   private focusLetter() {
     const el = this.letterInputs?.last?.nativeElement;
@@ -59,7 +58,6 @@ export class LocaleComponent implements AfterViewInit {
     if (!this.p1.word.trim()) return;
     this.startRound(this.p1.word, this.p2.name);
     this.phase = 'p2Guess';
-    // focus arriverà via changes.subscribe()
   }
 
   confirmWordFromP2() {
@@ -105,8 +103,6 @@ export class LocaleComponent implements AfterViewInit {
 
     const over = this.gameOver;
     if (over) { this.finishRound(over); return; }
-
-    // stesso input, rifocalizza
     this.focusLetter();
   }
 

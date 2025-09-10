@@ -42,7 +42,7 @@ export class CpuGameComponent implements OnInit, AfterViewInit {
     this.route.queryParams.subscribe(p => {
       this.level = (p['level'] ?? 'easy') as any;
       this.playerName = (p['name'] ?? 'Player').toString();
-      this.start();                         // seed random lato BE
+      this.start();
     });
   }
 
@@ -59,7 +59,7 @@ export class CpuGameComponent implements OnInit, AfterViewInit {
   }
 
   back(){ this.router.navigate(['/cpu']); }
-  changeWord(){ this.start(Date.now().toString()); }   // ← forza seed diverso
+  changeWord(){ this.start(Date.now().toString()); }
   restart(){ this.changeWord(); }
 
   get dots(): number[] { return Array.from({ length: this.maxLives }); }

@@ -45,8 +45,8 @@
 
 .card {
   background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-  -webkit-backdrop-filter: saturate(120%) blur(10px); /* Safari */
-  backdrop-filter: saturate(120%) blur(10px);         /* altri */
+  -webkit-backdrop-filter: saturate(120%) blur(10px); 
+  backdrop-filter: saturate(120%) blur(10px);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: clamp(18px, 3.5vw, 28px);
@@ -59,7 +59,7 @@
 
 @supports not ((-webkit-backdrop-filter: blur(0)) or (backdrop-filter: blur(0))) {
   .card {
-    background: rgba(17, 24, 39, 0.7); /* aumenta opacità, niente blur */
+    background: rgba(17, 24, 39, 0.7);
   }
 }
 
@@ -168,7 +168,6 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* mobile tweaks */
 @media (max-width: 520px) {
   .mode-btn {
     grid-template-columns: 48px 1fr;

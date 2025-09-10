@@ -8,7 +8,7 @@
   <p class="sub">Difficoltà: <strong>{{ level }}</strong></p>
 
   <div class="grid">
-    <!-- SINISTRA -->
+    
     <div class="left">
       <svg class="hang" viewBox="0 0 160 180" aria-label="impiccato">
         <g class="gallows">
@@ -44,7 +44,6 @@
       </div>
     </div>
 
-    <!-- DESTRA -->
     <aside class="wrong">
       <h3>Errate</h3>
       <div class="chips">
@@ -53,7 +52,6 @@
     </aside>
   </div>
 
-  <!-- FINE PARTITA -->
   <div class="overlay" *ngIf="gameOver">
     <div class="modal">
       <h3 *ngIf="gameOver==='win'">Hai vinto</h3>

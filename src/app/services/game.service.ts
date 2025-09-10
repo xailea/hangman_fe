@@ -17,7 +17,7 @@ export class GameService {
 
   start(level: 'easy'|'medium'|'hard'|'extreme', seed?: string){
     let params = new HttpParams().set('level', level);
-    if (seed) params = params.set('seed', seed);   // ← forza nuova parola
+    if (seed) params = params.set('seed', seed);
     return this.http.get<StartResp>(`${this.base}/start`, { params });
   }
 

@@ -33,7 +33,7 @@ export class WordService {
     const buf = this.cache.get(level) ?? [];
     if (buf.length === 0) {
       const w = this.pickFallback(level, 1)[0];
-      // avvia prefetch in background
+      
       this.prefetch(level).catch(() => {});
       return w;
     }

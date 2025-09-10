@@ -70,7 +70,7 @@ h2{
     width: 260px;
     text-align: center;
 
-    @include u.neon; // stesso mixin neon che usi sulle card
+    @include u.neon;
 
     transition: all .25s ease;
 
