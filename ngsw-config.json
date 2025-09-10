@@ -1,0 +1,14 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    { "name": "hangman", "installMode": "prefetch", "resources": { "files": ["/favicon.ico","/index.html","/*.css","/*.js"] } },
+    { "name": "hangman", "installMode": "lazy", "updateMode": "prefetch", "resources": { "files": ["/assets/**","/*.webmanifest"] } }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-render",
+      "urls": ["https://hangman-be.onrender.com/api/game/**"],
+      "cacheConfig": { "strategy": "freshness", "maxSize": 100, "maxAge": "1h", "timeout": "5s" }
+    }
+  ]
+}
